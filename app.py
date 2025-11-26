@@ -209,6 +209,27 @@ def api_analyze():
 def api_health():
     return jsonify({'status': 'ok', 'message': 'Privacy Policy Analyzer API is running'})
 
+@flask_app.route('/api/chat', methods=['POST'])
+def api_chat():
+    try:
+        data = request.json
+        question = data.get('question', '')
+        platform = data.get('platform', 'Unknown Platform')
+        
+        if not question.strip():
+            return jsonify({'error': 'Question is required'}), 400
+        
+        # Use the analyzer's chat functionality
+        response = analyzer.chat_with_ai(question, platform)
+        
+        return jsonify({
+            'response': response,
+            'platform': platform,
+            'question': question
+        })
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 # Start Flask API in background thread
 def start_flask_api():
     flask_app.run(host='0.0.0.0', port=8502, debug=False)
@@ -455,6 +476,89 @@ else:
                 </div>
             </div>
             """, unsafe_allow_html=True)
+        
+        # Add Chat Interface after analysis results
+        st.markdown("---")
+        st.markdown("### 💬 Ask Questions About This Privacy Policy")
+        
+        # Initialize chat history in session state
+        if 'chat_history' not in st.session_state:
+            st.session_state.chat_history = []
+        
+        # Chat input
+        user_question = st.text_input(
+            "Ask anything about this privacy policy:",
+            placeholder="e.g., 'Does this app track my location?', 'Who do they share my data with?', 'What are my rights?'",
+            key="chat_input"
+        )
+        
+        col1, col2 = st.columns([1, 4])
+        with col1:
+            if st.button("🤖 Ask AI", key="ask_button"):
+                if user_question.strip():
+                    # Get AI response
+                    with st.spinner("🤖 AI is thinking..."):
+                        try:
+                            ai_response = analyzer.chat_with_ai(user_question, platform_display_name)
+                            
+                            # Add to chat history
+                            st.session_state.chat_history.append({
+                                'question': user_question,
+                                'response': ai_response,
+                                'platform': platform_display_name
+                            })
+                            
+                            # Clear input
+                            st.session_state.chat_input = ""
+                            st.rerun()
+                        except Exception as e:
+                            st.error(f"Chat error: {e}")
+                else:
+                    st.warning("Please enter a question first!")
+        
+        with col2:
+            if st.button("🗑️ Clear Chat", key="clear_chat"):
+                st.session_state.chat_history = []
+                st.rerun()
+        
+        # Display chat history
+        if st.session_state.chat_history:
+            st.markdown("#### 💭 Chat History")
+            
+            # Show recent chats (last 5)
+            recent_chats = st.session_state.chat_history[-5:]
+            
+            for i, chat in enumerate(reversed(recent_chats)):
+                with st.expander(f"Q: {chat['question'][:50]}{'...' if len(chat['question']) > 50 else ''}", expanded=(i==0)):
+                    st.markdown(f"""
+                    <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin: 0.5rem 0;">
+                        <strong>❓ Your Question:</strong><br>
+                        {chat['question']}
+                    </div>
+                    <div style="background: #e3f2fd; padding: 1rem; border-radius: 8px; margin: 0.5rem 0;">
+                        <strong>🤖 AI Response:</strong><br>
+                        {chat['response']}
+                    </div>
+                    """, unsafe_allow_html=True)
+        
+        # Suggested questions
+        st.markdown("#### 💡 Suggested Questions")
+        suggested_questions = [
+            "What's the riskiest data they collect?",
+            "Who do they share my data with?", 
+            "Do they track my location?",
+            "How can I delete my data?",
+            "What are my privacy rights?",
+            "Do they use my data for advertising?"
+        ]
+        
+        cols = st.columns(2)
+        for i, suggestion in enumerate(suggested_questions):
+            with cols[i % 2]:
+                if st.button(f"💬 {suggestion}", key=f"suggest_{i}"):
+                    # Auto-fill the question
+                    st.session_state.chat_input = suggestion
+                    st.rerun()
     
     else:
         # Call to action

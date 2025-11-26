@@ -164,9 +164,63 @@ async function analyzeCurrentPage(tab) {
                 <div style="font-size: 2em; margin-bottom: 0.5rem;">⚠️</div>
                 <h3>Analysis Failed</h3>
                 <p style="font-size: 0.9em;">Please try again or visit our web app.</p>
+        </div>
+        
+        <!-- Chat Interface -->
+        <div style="margin-top: 20px; padding: 15px; border-top: 1px solid #eee;">
+            <h4 style="margin: 0 0 10px 0; color: #333;">💬 Ask About This Policy</h4>
+            <div style="display: flex; gap: 8px; margin-bottom: 10px;">
+                <input type="text" id="chatInput" placeholder="e.g., Do they track location?" 
+                       style="flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 12px;">
+                <button id="askBtn" style="padding: 8px 12px; background: #007bff; color: white; border: none; border-radius: 4px; font-size: 12px;">Ask</button>
             </div>
-        `;
-    } finally {
+            <div id="chatResponse" style="font-size: 12px; color: #666; min-height: 20px;"></div>
+        </div>
+    `;
+    
+    // Add chat functionality
+    const chatInput = document.getElementById('chatInput');
+    const askBtn = document.getElementById('askBtn');
+    const chatResponse = document.getElementById('chatResponse');
+    
+    askBtn.addEventListener('click', async () => {
+        const question = chatInput.value.trim();
+        if (!question) return;
+        
+        askBtn.textContent = '🤖';
+        askBtn.disabled = true;
+        chatResponse.innerHTML = '<div style="color: #666;">🤖 Thinking...</div>';
+        
+        try {
+            const response = await fetch('http://localhost:8502/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    question: question,
+                    platform: analysis.platform || 'Unknown'
+                })
+            });
+            
+            if (response.ok) {
+                const result = await response.json();
+                chatResponse.innerHTML = `<div style="background: #f8f9fa; padding: 8px; border-radius: 4px; margin-top: 5px;">${result.response}</div>`;
+            } else {
+                throw new Error('API unavailable');
+            }
+        } catch (error) {
+            chatResponse.innerHTML = '<div style="color: #dc3545;">Chat temporarily unavailable. Please use the main app.</div>';
+        } finally {
+            askBtn.textContent = 'Ask';
+            askBtn.disabled = false;
+            chatInput.value = '';
+        }
+    });
+    
+    // Enter key support
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') askBtn.click();
+    });
+} finally {
         // Reset button
         analyzeBtn.textContent = originalText;
         analyzeBtn.disabled = false;

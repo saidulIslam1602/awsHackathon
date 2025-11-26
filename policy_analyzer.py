@@ -404,9 +404,13 @@ Provide a helpful, accurate answer in a conversational tone. Be specific and act
         """Generate mock chat responses for demo"""
         question_lower = question.lower()
         
-        if "risky" in question_lower or "dangerous" in question_lower:
-            risky_data = [d for d in policy.get('data_types', []) if any(x in d.lower() for x in ['location', 'biometric', 'message', 'contact'])]
-            return f"🚨 The riskiest data {platform} collects includes: {', '.join(risky_data[:3])}. This data can be used for detailed profiling and tracking."
+        # Enhanced keyword matching for better responses
+        if "risky" in question_lower or "dangerous" in question_lower or "worst" in question_lower:
+            risky_data = [d for d in policy.get('data_types', []) if any(x in d.lower() for x in ['location', 'biometric', 'message', 'contact', 'financial', 'health'])]
+            if risky_data:
+                return f"🚨 The riskiest data {platform} collects includes: {', '.join(risky_data[:3])}. This data can be used for detailed profiling and tracking."
+            else:
+                return f"⚠️ {platform} collects various types of personal data. While specific high-risk categories weren't found in our analysis, any personal data collection carries privacy implications."
         
         elif "protect" in question_lower or "privacy" in question_lower:
             return f"🛡️ To protect your privacy on {platform}:\n• Review and adjust privacy settings\n• Limit location sharing\n• Be selective about what you post\n• Regularly review connected apps\n• Consider deleting old data"
@@ -414,11 +418,53 @@ Provide a helpful, accurate answer in a conversational tone. Be specific and act
         elif "delete" in question_lower:
             return f"📱 To delete your {platform} data:\n• Go to account settings\n• Look for 'Delete Account' or 'Data & Privacy'\n• Download your data first if needed\n• Note: Some data may be retained for legal purposes"
         
-        elif "share" in question_lower or "third party" in question_lower:
-            return f"🔗 {platform} shares your data with: {policy.get('sharing', 'various partners')}. This means your information may be used beyond just the platform itself."
+        elif "share" in question_lower or "third party" in question_lower or "partner" in question_lower:
+            sharing_info = policy.get('sharing', 'various partners and third parties')
+            return f"🔗 {platform} shares your data with: {sharing_info}. This means your information may be used beyond just the platform itself for advertising, analytics, and other business purposes."
+        
+        elif "location" in question_lower or "gps" in question_lower or "track" in question_lower:
+            location_data = [d for d in policy.get('data_types', []) if 'location' in d.lower() or 'gps' in d.lower()]
+            if location_data:
+                return f"📍 {platform} collects location data including: {', '.join(location_data)}. This can be used to track your movements and build detailed profiles of your daily activities."
+            else:
+                return f"📍 No specific location tracking mentioned in {platform}'s policy, but many apps collect location data indirectly through IP addresses and device information."
+        
+        elif "contact" in question_lower or "phone" in question_lower or "email" in question_lower:
+            contact_data = [d for d in policy.get('data_types', []) if any(x in d.lower() for x in ['contact', 'phone', 'email', 'address'])]
+            if contact_data:
+                return f"📞 {platform} collects contact information: {', '.join(contact_data)}. This can be used to contact you directly and may be shared with advertisers."
+            else:
+                return f"📞 Contact information collection not explicitly detailed in our analysis of {platform}'s policy."
+        
+        elif "biometric" in question_lower or "fingerprint" in question_lower or "face" in question_lower:
+            biometric_data = [d for d in policy.get('data_types', []) if any(x in d.lower() for x in ['biometric', 'fingerprint', 'face', 'voice'])]
+            if biometric_data:
+                return f"🔐 {platform} collects biometric data: {', '.join(biometric_data)}. This is highly sensitive and permanent - you can't change your fingerprints like a password!"
+            else:
+                return f"🔐 No biometric data collection mentioned in {platform}'s policy analysis."
+        
+        elif "advertis" in question_lower or "ads" in question_lower or "marketing" in question_lower:
+            return f"📢 {platform} uses your data for targeted advertising. They build detailed profiles of your interests, behaviors, and demographics to show you personalized ads and may share this with advertising partners."
+        
+        elif "children" in question_lower or "kids" in question_lower or "minor" in question_lower:
+            return f"👶 {platform}'s policy regarding children: Most platforms require users to be 13+ due to COPPA regulations. However, age verification is often minimal, and data from younger users may still be collected."
+        
+        elif "retention" in question_lower or "keep" in question_lower or "store" in question_lower:
+            return f"⏰ {platform} may retain your data indefinitely, even after account deletion. Some data is kept for 'legitimate business purposes' or legal requirements, which can be years."
+        
+        elif "rights" in question_lower or "control" in question_lower or "opt out" in question_lower:
+            return f"⚖️ Your rights with {platform}: You can typically request data access, correction, or deletion. However, exercising these rights can be complex and may not remove all traces of your data."
+        
+        elif "secure" in question_lower or "encryption" in question_lower or "breach" in question_lower:
+            return f"🔒 {platform} claims to use security measures, but data breaches are common. Your data is only as secure as their weakest security point, and breaches can expose years of personal information."
         
         else:
-            return f"🤖 Great question! Based on {platform}'s policy, they collect {len(policy.get('data_types', []))} types of data. The main concerns are: {', '.join(policy.get('concerns', [])[:2])}. Would you like me to explain any specific aspect?"
+            data_count = len(policy.get('data_types', []))
+            concerns = policy.get('concerns', [])
+            if data_count > 0:
+                return f"🤖 Based on {platform}'s policy, they collect {data_count} types of data. Key concerns include: {', '.join(concerns[:2]) if concerns else 'data sharing and retention'}. Ask me about specific topics like 'location tracking', 'data sharing', or 'your rights'."
+            else:
+                return f"🤖 I don't have specific information about that aspect of {platform}'s privacy policy. Try asking about 'data collection', 'sharing practices', 'location tracking', or 'your privacy rights'."
     
     def get_harmful_points(self, platform: str) -> Dict:
         """Get only the harmful/concerning points from privacy policy using AI"""

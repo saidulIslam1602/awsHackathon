@@ -1,0 +1,142 @@
+/* Styles for Privacy Policy Analyzer Extension Content Script */
+
+/* Widget animations */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes loading {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Main widget styling */
+#privacy-analyzer-widget {
+    animation: slideInRight 0.3s ease-out;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+/* Hover effects for buttons */
+#privacy-analyzer-widget button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Loading animation */
+.loading-bar {
+    width: 100%;
+    height: 4px;
+    background: #f0f0f0;
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+.loading-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #dc3545;
+    animation: loading 2s infinite;
+}
+
+/* Notification styles */
+.privacy-notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #dc3545;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 10001;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    animation: slideInRight 0.3s ease-out;
+}
+
+/* Risk level indicators */
+.risk-high {
+    color: #dc3545 !important;
+    font-weight: bold;
+}
+
+.risk-medium {
+    color: #ffc107 !important;
+    font-weight: bold;
+}
+
+.risk-low {
+    color: #28a745 !important;
+    font-weight: bold;
+}
+
+/* Highlight privacy policy links */
+a[href*="privacy"]:not(#privacy-analyzer-widget a),
+a[href*="policy"]:not(#privacy-analyzer-widget a),
+a[href*="terms"]:not(#privacy-analyzer-widget a) {
+    position: relative;
+}
+
+a[href*="privacy"]:not(#privacy-analyzer-widget a)::after,
+a[href*="policy"]:not(#privacy-analyzer-widget a)::after,
+a[href*="terms"]:not(#privacy-analyzer-widget a)::after {
+    content: '🔒';
+    position: absolute;
+    top: -5px;
+    right: -15px;
+    font-size: 10px;
+    opacity: 0.7;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    #privacy-analyzer-widget {
+        width: 280px !important;
+        right: 10px !important;
+        top: 10px !important;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    #privacy-analyzer-widget {
+        box-shadow: 0 8px 32px rgba(255,255,255,0.1) !important;
+    }
+}
+
+/* Print styles - hide widget when printing */
+@media print {
+    #privacy-analyzer-widget {
+        display: none !important;
+    }
+}

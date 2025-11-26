@@ -1,0 +1,44 @@
+{
+  "platform": "TikTok",
+  "last_updated": "2024-08-20",
+  "text": "TikTok collects information you provide, including profile information, user content (videos, comments, messages), and payment information. We automatically collect technical information including IP address, device identifiers, and usage data. We also infer information about your interests based on your activity.",
+  "data_types": [
+    "Username & Email",
+    "Phone Number",
+    "Videos & Audio",
+    "Comments & Messages",
+    "Profile Information",
+    "Location Data",
+    "Browsing & Search History",
+    "Watch Time & Interactions",
+    "Device Information",
+    "Clipboard Data",
+    "Biometric Data (face/voice)",
+    "Contacts (if permitted)"
+  ],
+  "sharing": "We share data with ByteDance companies, service providers, business partners, advertisers (aggregated), and for legal compliance. Data may be transferred internationally including to China.",
+  "retention": "We retain information for as long as necessary to provide services. Deleted content may remain in backups for up to 90 days. Some data retained longer for legal purposes.",
+  "user_rights": [
+    "Access your data",
+    "Delete your account",
+    "Control privacy settings",
+    "Opt out of personalized ads",
+    "Manage data sharing"
+  ],
+  "concerns": [
+    "Collects biometric data (face, voice)",
+    "Access to clipboard data",
+    "International data transfers to China",
+    "Extensive behavioral tracking",
+    "Algorithmic content recommendation",
+    "Access to contacts",
+    "Young user base with extensive data collection"
+  ],
+  "positives": [
+    "Privacy controls available",
+    "Can make account private",
+    "Allows data download",
+    "Clear content controls",
+    "Family pairing features"
+  ]
+}

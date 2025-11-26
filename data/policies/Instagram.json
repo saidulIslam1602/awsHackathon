@@ -1,0 +1,43 @@
+{
+  "platform": "Instagram",
+  "last_updated": "2024-10-01",
+  "text": "Instagram (owned by Meta) collects information you share, including photos, videos, captions, and direct messages. We collect information about how you use Instagram, including accounts you follow, hashtags you use, and content you interact with. We also collect information from devices you use to access Instagram.",
+  "data_types": [
+    "Username & Email",
+    "Phone Number",
+    "Photos & Videos",
+    "Stories & Reels",
+    "Direct Messages",
+    "Followers & Following",
+    "Likes & Comments",
+    "Location Tags",
+    "Search History",
+    "Shopping Activity",
+    "Device & Connection Info",
+    "Camera & Photo Access"
+  ],
+  "sharing": "Shared across Meta companies (Facebook, WhatsApp), with advertising partners, with third-party apps you connect, and with service providers. Your content is visible based on your privacy settings.",
+  "retention": "Data retained while your account is active and for a period after deletion. Some data may be kept longer for legal compliance and safety.",
+  "user_rights": [
+    "Make account private",
+    "Control who sees your content",
+    "Delete posts and account",
+    "Download your data",
+    "Manage ad preferences"
+  ],
+  "concerns": [
+    "Extensive tracking of user behavior",
+    "Shares data with Facebook ecosystem",
+    "Location tracking through tags",
+    "Access to camera and photos",
+    "Algorithmic content curation",
+    "Targeted advertising"
+  ],
+  "positives": [
+    "Strong privacy controls",
+    "Private account option",
+    "GDPR compliant",
+    "Can download all data",
+    "Clear content visibility settings"
+  ]
+}

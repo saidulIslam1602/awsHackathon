@@ -1,0 +1,44 @@
+{
+  "platform": "WhatsApp",
+  "last_updated": "2024-09-10",
+  "text": "WhatsApp collects account information including phone number, profile name, and profile picture. We collect usage and log information, including how you interact with our services. Device and connection information is also collected. Messages are end-to-end encrypted, but metadata is collected.",
+  "data_types": [
+    "Phone Number",
+    "Profile Name & Photo",
+    "Status Updates",
+    "Contacts (phone book)",
+    "Usage Data",
+    "Device Information",
+    "IP Address",
+    "Transaction Data (payments)",
+    "Location Data",
+    "Message Metadata (not content)",
+    "Group Memberships",
+    "Last Seen & Online Status"
+  ],
+  "sharing": "We share information with Meta companies to improve services, provide integrations, and show relevant ads on other Meta platforms. We share with service providers and for legal compliance.",
+  "retention": "Messages stored on your device. Undelivered messages deleted after 30 days. Account information retained while account is active. Some data retained longer for legal and safety reasons.",
+  "user_rights": [
+    "Delete your account",
+    "Control privacy settings",
+    "Manage who sees your info",
+    "Block contacts",
+    "Export chat history"
+  ],
+  "concerns": [
+    "Shares metadata with Facebook",
+    "Access to entire contact list",
+    "Message metadata collected",
+    "Location tracking",
+    "Integration with Meta ecosystem",
+    "Business messages not encrypted"
+  ],
+  "positives": [
+    "End-to-end encryption for personal messages",
+    "Strong privacy controls",
+    "Can control who sees profile info",
+    "GDPR compliant",
+    "Minimal data retention",
+    "No ads within the app"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "platform": "Facebook",
+  "last_updated": "2024-10-01",
+  "text": "Meta collects information you provide when creating an account and using Facebook, including posts, photos, videos, and messages. We collect information about your activity, including pages you visit, ads you click, and content you interact with. We also collect information from and about the devices you use, including websites and apps you use that integrate with our services.",
+  "data_types": [
+    "Name, Email & Phone",
+    "Profile Photos & Videos",
+    "Posts & Comments",
+    "Friends & Connections",
+    "Likes & Reactions",
+    "Location Data",
+    "Browsing History (on/off Facebook)",
+    "Ad Interactions",
+    "Device Information",
+    "Face Recognition Data",
+    "Payment Information",
+    "Third-party App Data"
+  ],
+  "sharing": "We share information across Meta companies (Instagram, WhatsApp, Oculus), with advertisers (aggregated data), with apps and websites you use, with measurement partners, vendors and service providers, and for legal reasons.",
+  "retention": "We retain data until it's no longer necessary to provide services, or until your account is deleted. Some information may be retained for longer periods for legal, safety, and security reasons.",
+  "user_rights": [
+    "Access and download your data",
+    "Delete your account",
+    "Control ad preferences",
+    "Manage privacy settings",
+    "Opt out of face recognition"
+  ],
+  "concerns": [
+    "Extremely broad data collection",
+    "Tracks activity across the web",
+    "Shares across entire Meta ecosystem",
+    "Uses data for targeted advertising",
+    "Collects data from third-party sources",
+    "Face recognition capabilities"
+  ],
+  "positives": [
+    "Comprehensive privacy controls",
+    "Allows data download",
+    "GDPR compliant",
+    "Transparent data policy",
+    "Can delete account and data"
+  ]
+}

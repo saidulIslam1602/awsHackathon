@@ -1,0 +1,40 @@
+{
+  "platform": "Tinder",
+  "last_updated": "2024-09-15",
+  "text": "Tinder collects information you provide directly, including your name, email, phone number, photos, gender, date of birth, and sexual preferences. We also collect information about your usage of the app, including swipes, matches, messages, and location data. This information is used to provide and improve our services, show you relevant matches, and deliver personalized advertising.",
+  "data_types": [
+    "Name & Email",
+    "Phone Number", 
+    "Photos & Videos",
+    "Date of Birth",
+    "Gender & Sexual Orientation",
+    "Location Data (GPS)",
+    "Swipe History",
+    "Match History",
+    "Messages & Chat Content",
+    "Device Information",
+    "Usage Patterns",
+    "Payment Information"
+  ],
+  "sharing": "We share your information with Match Group companies (including Match.com, OkCupid, Hinge), advertising partners, analytics providers, and service providers. Your profile is visible to other users based on your preferences.",
+  "retention": "We retain your data for as long as your account is active and for a reasonable period thereafter. Some data may be retained indefinitely for legal and safety purposes.",
+  "user_rights": [
+    "Access your data",
+    "Delete your account",
+    "Opt out of marketing",
+    "Control profile visibility"
+  ],
+  "concerns": [
+    "Extensive data collection including intimate preferences",
+    "Shares data across Match Group ecosystem",
+    "Location tracking",
+    "Indefinite retention of some data",
+    "Profile visible to other users"
+  ],
+  "positives": [
+    "GDPR compliant",
+    "Allows account deletion",
+    "Privacy controls available",
+    "Transparent about data usage"
+  ]
+}

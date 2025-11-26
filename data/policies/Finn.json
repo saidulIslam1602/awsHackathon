@@ -1,0 +1,39 @@
+{
+  "platform": "Finn.no",
+  "last_updated": "2024-11-01",
+  "text": "Finn.no er Norges største markedsplass og følger strenge personvernregler i henhold til GDPR. Vi samler inn personopplysninger for å tilby markedsplasstjenester, inkludert kontaktinformasjon, stedsdata for annonser, og bruksdata for å forbedre tjenesten. Som norsk selskap prioriterer vi personvern og datasikkerhet.",
+  "data_types": [
+    "Navn og kontaktinformasjon",
+    "E-postadresse og telefonnummer", 
+    "Stedsdata for annonser",
+    "Søkehistorikk",
+    "Enhetsopplysninger",
+    "Bruksanalyse",
+    "Annonseinnhold",
+    "Kommunikasjon mellom brukere"
+  ],
+  "sharing": "Begrenset deling med tjenesteleverandører og annonsepartnere. Ingen salg av persondata til tredjeparter. Overholder norsk personvernlovgivning.",
+  "retention": "Data oppbevares så lenge kontoen er aktiv. Slettes på forespørsel i henhold til GDPR. Noen data kan oppbevares for juridiske formål.",
+  "user_rights": [
+    "Tilgang til dine data",
+    "Slette kontoen din",
+    "Rette feil i personopplysninger",
+    "Begrense behandling",
+    "Dataportabilitet",
+    "Trekke tilbake samtykke"
+  ],
+  "concerns": [
+    "Samler inn stedsdata for annonser",
+    "Deler data med annonsepartnere",
+    "Lagrer søkehistorikk og bruksmønstre",
+    "Kommunikasjon mellom brukere overvåkes"
+  ],
+  "positives": [
+    "Følger strenge norske personvernregler",
+    "GDPR-kompatibel",
+    "Ingen salg av persondata",
+    "Klar rett til sletting",
+    "Lokal norsk tjeneste",
+    "Transparent personvernpraksis"
+  ]
+}
